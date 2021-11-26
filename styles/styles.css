@@ -1,0 +1,129 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header{
+    background-color: hsl(97deg 54% 46%);
+    box-shadow: 5px 4px 20px 2px gray;
+}
+
+header h1{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    text-align: center;
+    text-shadow: 5px 3px 10px black;
+    word-spacing: 10px;
+}
+
+body{
+    background-color: rgb(248, 246, 246);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+#containerForm{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+form h3{
+    color: gray;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 50px;
+}
+
+#inputEdad, #inputPeso, #inputAltura{
+    border: 0.5px solid gray;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    height: 50px;
+    margin: 30px 10px 30px 10px;
+    text-align: center;
+    width: 200px;
+}
+
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+#female{
+    color: gray;
+    font-size: 60px;
+    margin: 10px;
+}
+
+#male{
+    color: gray;
+    font-size: 60px;
+    margin: 10px;
+}
+
+#female:hover{
+    color: gold;
+    transition: background-color .5s;
+}
+
+#male:hover{
+    color: gold;
+    transition: background-color .5s;
+}
+
+#iconos{
+    padding-left: 50px;
+}
+
+#sexo span{
+    color: gray;
+    font-size: 50px;
+    margin: 10px;
+}
+
+#sexo{
+    margin-bottom: 40px;
+}
+
+button{
+    align-self: center;
+    background-color: hsl(97deg 54% 46%);
+    border-style: none;
+    border-radius: 10px;
+    
+    height: 50px;
+    width: 300px;
+}
+
+a{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+button:hover{
+    color: black;
+    background-color: gold;
+    transition: background-color .5s;
+}
+
+form h3{
+    align-self: center;
+}
+
+.unidad{
+    color: hsl(97deg 54% 46%);
+}
