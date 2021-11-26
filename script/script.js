@@ -81,5 +81,5 @@ function capturarDatos(){
 
     localStorage.setItem('Datos', JSON.stringify(objetoDatos));
 
-    document.getElementById("enlace").setAttribute('href', 'calculadora_IMC/pages/resultado.html')
+    document.getElementById("enlace").setAttribute('href', '../pages/resultado.html')
 }
