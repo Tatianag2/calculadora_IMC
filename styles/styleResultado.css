@@ -123,6 +123,10 @@ thead{
     width: 500px;
 }
 
+#nota{
+    text-align: center;
+}
+
 @media (max-width: 500px){
     table{
         width: 90%;
