@@ -140,19 +140,23 @@ if(document.getElementById("btnEstad")){ //para ver las estadisticas
         }
         //calculos para hallar la media de imc por genero segun los 15 ultimos datos
         let totalImcHombres = 0;
+        let totalCantidadH = 0;
         let totalImcMujeres = 0;
+        let totalCantidadM = 0;
         let imcTabla = document.getElementsByClassName("imcT");
 
         for(let x=0; x<imcTabla.length ; x++){
             if(imcTabla[x].id == 'Mujer'){
                 totalImcMujeres += parseFloat(imcTabla[x].textContent);
+                totalCantidadM += x;
             } else {
                 totalImcHombres += parseFloat(imcTabla[x].textContent);
+                totalCantidadH += x;
             }
         }
     
-        let mediaImcHombres = totalImcHombres/imcTabla.length;
-        let mediaImcMujeres = totalImcMujeres/imcTabla.length;
+        let mediaImcHombres = totalImcHombres/totalCantidadH;
+        let mediaImcMujeres = totalImcMujeres/totalCantidadM;
         //grafica de la media por genero
         let grafica = document.getElementById("grafica").getContext('2d');
         var chart = new Chart(grafica,{
