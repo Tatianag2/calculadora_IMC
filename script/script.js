@@ -1,24 +1,24 @@
-if(document.getElementById("btn")){
+if(document.getElementById("btn")){ //llamado al boton del formulario para realizar las validaciones
     document.getElementById("btn").addEventListener('click', function(){
         validaciones();
     });
 }
 
-if(document.getElementById("male")){
+if(document.getElementById("male")){ //funcion para que al hacer click a los iconos de los generos si o si elija uno
     document.getElementById("male").addEventListener('click', function(){
         male.style.color = "gold";
         female.style.color = "gray";
     })
 }
 
-if(document.getElementById("female")){
+if(document.getElementById("female")){ //funcion para que al hacer click a los iconos de los generos si o si elija uno
     document.getElementById("female").addEventListener('click', function(){
         female.style.color = "gold";
         male.style.color = "gray";
     })
 }
 
-function validaciones(){
+function validaciones(){ //validaciones para corroborar que los campos sea debidamente diligenciados
     let sexo = "";
     if(document.getElementById("male").style.color == 'gold'){
         sexo = "Hombre"
@@ -46,7 +46,7 @@ function validaciones(){
     }
 }
 
-let data = [];
+let data = []; //arreglo vacio que sera almacenado en el localStorage
 
 function capturarDatos(psexo, pedad, ppeso, paltura){
 
@@ -57,47 +57,46 @@ function capturarDatos(psexo, pedad, ppeso, paltura){
         altura: paltura
     }
     
-    let data = getListaDatos();
-    data.push(objetoDatos);
-    localStorage.setItem('Datos', JSON.stringify(data));
+    let data = getListaDatos(); //llamado a la lista con los objetos almacenados
+    data.push(objetoDatos); //se agrega objeto nuevo al arreglo
+    localStorage.setItem('Datos', JSON.stringify(data)); //asignar una clave al arreglo de objetos
     
-    document.getElementById("enlace").setAttribute('href', '../pages/resultado.html')
+    document.getElementById("enlace").setAttribute('href', '../pages/resultado.html')//esto me abre la pagina nueva
 }
 
-function getListaDatos(){
+function getListaDatos(){ //acceder al arreglo de ojetos del local storage
     let listaDatosLocal = JSON.parse(localStorage.getItem('Datos'));
     if(listaDatosLocal == null){
         listaDatosLocal = data;
     }
-    
     return listaDatosLocal;
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-    obtenerIMC();
+    obtenerIMC(); //se llama a la funcion cuando haya cargado la pagina de resultados
 })
 
-function obtenerIMC(){
+function obtenerIMC(){ //captura de datos del localStorage para calcular el imc ya que son dos html diferentes
 
-    let datosTotales = JSON.parse(localStorage.getItem('Datos'));
-    let datoFinal = datosTotales[datosTotales.length - 1]
+    let datosTotales = JSON.parse(localStorage.getItem('Datos')); //archivo json que esta en el LocalStorage
+    let datoFinal = datosTotales[datosTotales.length - 1] //llamo al ultimo objeto que es el que me interesa mostrar el imc
     let imc = datoFinal.peso / (datoFinal.altura**2);
     let pesoIdealMin = (18.5 * (datoFinal.altura**2)).toFixed(2);
     let pesoIdealMax = (24.9 * (datoFinal.altura**2)).toFixed(2);
     let fragment = document.createDocumentFragment();
     let rangoPeso = document.getElementById("rangoPeso");
     
-    if(document.getElementById("inputResultado")){
+    if(document.getElementById("inputResultado")){ //para que no salga error en consola
         document.getElementById("inputResultado").value = imc.toFixed(2);
 
         let div = document.createElement("div");
-        div.innerHTML = `<p id="rangoPesoIdeal">Peso ideal: ${pesoIdealMin} - ${pesoIdealMax} (Kg)</p>`
+        div.innerHTML = `<p id="rangoPesoIdeal">Peso ideal: ${pesoIdealMin} - ${pesoIdealMax} (Kg)</p>` //muestro el calculo de peso ideal segunestatura y datos dados de imc saludable
         fragment.appendChild(div);
         rangoPeso.appendChild(fragment);
 
-        let flechaRango = document.getElementById("flechaRango");
+        let flechaRango = document.getElementById("flechaRango"); //icono flecha
     
-        if(imc<=50){
+        if(imc<=50){ //ya que el imc saludable es de 25 asumi la totalidad como 50, mide 400px el rectangulo
             let pixelesLeft = (imc*8).toFixed(2);
             flechaRango.style.left = `${pixelesLeft}px`;
         } else {
@@ -106,14 +105,14 @@ function obtenerIMC(){
     }
 }
 
-if(document.getElementById("btnEstad")){
+if(document.getElementById("btnEstad")){ //para ver las estadisticas
     document.getElementById("btnEstad").addEventListener('click', function(){
-        document.getElementById("btnEstad").style.display = 'none';
-        let datosTotales = JSON.parse(localStorage.getItem('Datos')).reverse();
+        document.getElementById("btnEstad").style.display = 'none'; //escondo el boton para que no se recargue
+        let datosTotales = JSON.parse(localStorage.getItem('Datos')).reverse(); //como necesito solo 15 datos cogi los 15 ultimos datos
         let fragment = document.createDocumentFragment();
         let tablaIMC = document.getElementById("tablaIMC");
     
-        let thead = document.createElement("thead");
+        let thead = document.createElement("thead"); //renderizo la tabla con los 15 ultimos datos
         thead.innerHTML = `<thead>
                                 <tr><td>No.</td>
                                 <td>Sexo</td>
@@ -126,7 +125,7 @@ if(document.getElementById("btnEstad")){
         tablaIMC.appendChild(fragment);
     
         for(let i=1; i<16; i++){
-            let tbody = document.createElement("tbody");
+            let tbody = document.createElement("tbody"); //renderizo la tabla con los 15 ultimos datos
             
             tbody.innerHTML = `<tbody id="cuerpoTabla">
                                 <tr><td class="posicion">${i}</td>
@@ -139,7 +138,7 @@ if(document.getElementById("btnEstad")){
             fragment.appendChild(tbody);
             tablaIMC.appendChild(fragment);
         }
-    
+        //calculos para hallar la media de imc por genero segun los 15 ultimos datos
         let totalImcHombres = 0;
         let totalImcMujeres = 0;
         let imcTabla = document.getElementsByClassName("imcT");
@@ -154,7 +153,7 @@ if(document.getElementById("btnEstad")){
     
         let mediaImcHombres = totalImcHombres/imcTabla.length;
         let mediaImcMujeres = totalImcMujeres/imcTabla.length;
-    
+        //grafica de la media por genero
         let grafica = document.getElementById("grafica").getContext('2d');
         var chart = new Chart(grafica,{
             type: 'bar',
