@@ -105,13 +105,13 @@ function obtenerIMC(){ //captura de datos del localStorage para calcular el imc 
     }
 }
 
-if (document.getElementById("btnEstad")) { //para ver las estadisticas
-    document.getElementById("btnEstad").addEventListener('click', function () {
+if(document.getElementById("btnEstad")){ //para ver las estadisticas
+    document.getElementById("btnEstad").addEventListener('click', function(){
         document.getElementById("btnEstad").style.display = 'none'; //escondo el boton para que no se recargue
         let datosTotales = JSON.parse(localStorage.getItem('Datos')).reverse(); //como necesito solo 15 datos cogi los 15 ultimos datos
         let fragment = document.createDocumentFragment();
         let tablaIMC = document.getElementById("tablaIMC");
-
+    
         let thead = document.createElement("thead"); //renderizo la tabla con los 15 ultimos datos
         thead.innerHTML = `<thead>
                                 <tr><td>No.</td>
@@ -123,51 +123,50 @@ if (document.getElementById("btnEstad")) { //para ver las estadisticas
                                 </thead>`
         fragment.appendChild(thead);
         tablaIMC.appendChild(fragment);
-
-        for (let i = 0; i < 15; i++) {
+    
+        for(let i=0; i<15; i++){
             let tbody = document.createElement("tbody"); //renderizo la tabla con los 15 ultimos datos
-
+            
             tbody.innerHTML = `<tbody id="cuerpoTabla">
                                 <tr><td class="posicion">${i}</td>
                                 <td class="sexoT">${datosTotales[i].sexo}</td>
                                 <td class="edadT">${datosTotales[i].edad}</td>
                                 <td class="pesoT">${datosTotales[i].peso}</td>
                                 <td class="alturaT">${datosTotales[i].altura}</td>
-                                <td class="imcT" id="${datosTotales[i].sexo}">${(datosTotales[i].peso / datosTotales[i].altura ** 2).toFixed(2)}</td></tr>
+                                <td class="imcT" id="${datosTotales[i].sexo}">${(datosTotales[i].peso/datosTotales[i].altura**2).toFixed(2)}</td></tr>
                                 </tbody>`;
             fragment.appendChild(tbody);
             tablaIMC.appendChild(fragment);
-
-            //calculos para hallar la media de imc por genero segun los 15 ultimos datos
-            let totalImcHombres = 0;
-            let totalImcMujeres = 0;
-            let imcTabla = document.getElementsByClassName("imcT");
-
-            for (let x = 0; x < imcTabla.length; x++) {
-                if (imcTabla[x].id == 'Mujer') {
-                    totalImcMujeres += parseFloat(imcTabla[x].textContent);
-                } else {
-                    totalImcHombres += parseFloat(imcTabla[x].textContent);
-                }
-            }
-
-            let mediaImcHombres = totalImcHombres / imcTabla.length;
-            let mediaImcMujeres = totalImcMujeres / imcTabla.length;
-            //grafica de la media por genero
-            let grafica = document.getElementById("grafica").getContext('2d');
-            var chart = new Chart(grafica, {
-                type: 'bar',
-                data: {
-                    labels: ['Mujeres', 'Hombres'],
-                    datasets: [
-                        {
-                            label: 'Gráfica media imc por sexo',
-                            backgroundColor: ['hsl(127deg 43% 55%)', 'hsl(215deg 66% 55%)'],
-                            data: [mediaImcMujeres, mediaImcHombres]
-                        }
-                    ]
-                }
-            })
         }
+        //calculos para hallar la media de imc por genero segun los 15 ultimos datos
+        let totalImcHombres = 0;
+        let totalImcMujeres = 0;
+        let imcTabla = document.getElementsByClassName("imcT");
+
+        for(let x=0; x<imcTabla.length ; x++){
+            if(imcTabla[x].id == 'Mujer'){
+                totalImcMujeres += parseFloat(imcTabla[x].textContent);
+            } else {
+                totalImcHombres += parseFloat(imcTabla[x].textContent);
+            }
+        }
+    
+        let mediaImcHombres = totalImcHombres/imcTabla.length;
+        let mediaImcMujeres = totalImcMujeres/imcTabla.length;
+        //grafica de la media por genero
+        let grafica = document.getElementById("grafica").getContext('2d');
+        var chart = new Chart(grafica,{
+            type: 'bar',
+            data:{
+                labels:['Mujeres' , 'Hombres'],
+                datasets:[
+                    {
+                        label: 'Gráfica media imc por sexo',
+                        backgroundColor: ['hsl(127deg 43% 55%)', 'hsl(215deg 66% 55%)'],
+                        data:[mediaImcMujeres, mediaImcHombres]
+                    }
+                ]
+            }
+        })
     })
 }
