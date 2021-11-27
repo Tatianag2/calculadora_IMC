@@ -148,10 +148,10 @@ if(document.getElementById("btnEstad")){ //para ver las estadisticas
         for(let x=0; x<imcTabla.length ; x++){
             if(imcTabla[x].id == 'Mujer'){
                 totalImcMujeres += parseFloat(imcTabla[x].textContent);
-                totalCantidadM += x;
+                totalCantidadM += 1;
             } else {
                 totalImcHombres += parseFloat(imcTabla[x].textContent);
-                totalCantidadH += x;
+                totalCantidadH += 1;
             }
         }
     
