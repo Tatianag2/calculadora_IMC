@@ -124,7 +124,7 @@ if(document.getElementById("btnEstad")){ //para ver las estadisticas
         fragment.appendChild(thead);
         tablaIMC.appendChild(fragment);
     
-        for(let i=1; i<16; i++){
+        for(let i=0; i<16; i++){
             let tbody = document.createElement("tbody"); //renderizo la tabla con los 15 ultimos datos
             
             tbody.innerHTML = `<tbody id="cuerpoTabla">
