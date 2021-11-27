@@ -61,7 +61,7 @@ function capturarDatos(psexo, pedad, ppeso, paltura){
     data.push(objetoDatos); //se agrega objeto nuevo al arreglo
     localStorage.setItem('Datos', JSON.stringify(data)); //asignar una clave al arreglo de objetos
     
-    document.getElementById("enlace").setAttribute('href', 'calculadora_IMC/pages/resultado.html')//esto me abre la pagina nueva
+    document.getElementById("enlace").setAttribute('href', '/calculadora_IMC/pages/resultado.html')//esto me abre la pagina nueva
 }
 
 function getListaDatos(){ //acceder al arreglo de ojetos del local storage
