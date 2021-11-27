@@ -26,16 +26,24 @@
     </div>
     </div>
     <hr>
-    <div id="rangoPeso"></div>
-    <div id="containerColores">
-        <div id="indicadorColores">
-            <p><i id="iconBp" class="fas fa-weight"></i>Bajo peso</p>
-            <p><i id="iconS" class="fas fa-weight"></i>Saludable</p>
-            <p><i id="iconEp" class="fas fa-weight"></i>Exceso de peso</p>
-            <p><i id="iconO" class="fas fa-weight"></i>Obeso</p>
+    <div id="secondSection">
+        <div id="rangoPeso"></div>
+        <div id="containerColores">
+            <div id="indicadorColores">
+                <p><i id="iconBp" class="fas fa-weight"></i>Bajo peso</p>
+                <p><i id="iconS" class="fas fa-weight"></i>Saludable</p>
+                <p><i id="iconEp" class="fas fa-weight"></i>Exceso de peso</p>
+                <p><i id="iconO" class="fas fa-weight"></i>Obeso</p>
+            </div>
+        </div>
+        <button id="btnEstad">Estadisticas</button>
+        <table id="tablaIMC"></table>
+        <div id="containerGrafica">
+            <canvas id="grafica"></canvas>
         </div>
     </div>
     <script src="../script/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 </body>
 
 </html>
